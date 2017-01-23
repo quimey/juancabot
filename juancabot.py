@@ -16,7 +16,7 @@ def handle_verification():
     return request.args.get('hub.challenge', '')
   else:
     print "Verification failed!"
-    return 'Error, wrong validation token %s' % request.args.get('hub.verify_token', '') 
+    return 'Error, wrong validation token' 
 
 @app.route('/', methods=['POST'])
 def handle_messages():
@@ -25,7 +25,7 @@ def handle_messages():
   print payload
   for sender, message in messaging_events(payload):
     print "Incoming from %s: %s" % (sender, message)
-    send_message(PAT, sender, message)
+    send_message(PAT, sender, message + ' tu vieja')
   return "ok"
 
 def messaging_events(payload):
